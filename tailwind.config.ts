@@ -18,10 +18,10 @@ const config = {
         "2xl": "1400px",
       },
     },
-
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        giants: ["var(--font-giants)"],
       },
       colors: {
         border: "hsl(var(--border))",
