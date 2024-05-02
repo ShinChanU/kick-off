@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/themeModeToggle";
 import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -27,18 +28,21 @@ export default function Header() {
 
   return (
     isMount && (
-      <header className="sticky top-0 z-10 flex items-center justify-center max-w-screen-sm p-4 m-auto border-b bg-inherit">
+      <header className="sticky top-0 z-10 m-auto flex w-full max-w-screen-sm items-center justify-center border-b bg-inherit p-4">
         <div className="absolute">
           {false && (
             <Button variant="link" onClick={handleGoBack}>
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="h-6 w-6" />
             </Button>
           )}
         </div>
 
-        <div className="text-3xl font-bold text-center font-giants">
+        <Link
+          href={"/"}
+          className="text-center font-giants text-header font-bold"
+        >
           Kick-off
-        </div>
+        </Link>
 
         <div className="absolute right-0 pr-4">
           <ModeToggle />

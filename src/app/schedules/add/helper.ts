@@ -1,0 +1,24 @@
+import { addMinutes, format } from "date-fns";
+
+const generateTimeIntervals = ({
+  start,
+  end,
+  interval,
+}: {
+  start: Date;
+  end: Date;
+  interval: number;
+}) => {
+  const timeIntervals = [];
+  let currentTime = start;
+
+  while (currentTime <= end) {
+    timeIntervals.push(format(currentTime, "HH:mm"));
+    currentTime = addMinutes(currentTime, interval);
+  }
+
+  console.log(start);
+  return timeIntervals;
+};
+
+export { generateTimeIntervals };

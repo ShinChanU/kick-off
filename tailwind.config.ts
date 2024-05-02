@@ -11,6 +11,67 @@ const config = {
   ],
   prefix: "",
   theme: {
+    borderRadius: {
+      md: ".25rem",
+    },
+    fontSize: {
+      header: [
+        "1.75rem",
+        {
+          lineHeight: "2.5rem",
+          letterSpacing: "0rem",
+          fontWeight: "700",
+        },
+      ],
+      "title-lg": [
+        "1.25rem",
+        {
+          lineHeight: "1.875rem",
+          letterSpacing: "0rem",
+          fontWeight: "700",
+        },
+      ],
+      "title-sm": [
+        "1rem",
+        {
+          lineHeight: "1.5rem",
+          letterSpacing: "0rem",
+          fontWeight: "700",
+        },
+      ],
+      "desc-lg": [
+        "1rem",
+        {
+          lineHeight: "1.5rem",
+          letterSpacing: "0rem",
+          fontWeight: "400",
+        },
+      ],
+      "desc-sm": [
+        "0.875rem",
+        {
+          lineHeight: "1.313rem", // TODO 짝수
+          letterSpacing: "0rem",
+          fontWeight: "400",
+        },
+      ],
+      caption: [
+        "0.75rem",
+        {
+          lineHeight: "1.125rem",
+          letterSpacing: "0rem",
+          fontWeight: "400",
+        },
+      ],
+      overline: [
+        "0.625rem",
+        {
+          lineHeight: "0.938rem", // TODO 짝수
+          letterSpacing: "0rem",
+          fontWeight: "400",
+        },
+      ],
+    },
     container: {
       center: true,
       padding: "2rem",
