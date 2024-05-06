@@ -17,7 +17,6 @@ const generateTimeIntervals = ({
     currentTime = addMinutes(currentTime, interval);
   }
 
-  console.log(start);
   return timeIntervals;
 };
 

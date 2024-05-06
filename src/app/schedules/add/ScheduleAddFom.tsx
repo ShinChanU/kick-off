@@ -2,18 +2,14 @@
 
 import { generateTimeIntervals } from "@/app/schedules/add/helper";
 import {
+  DATE_FORMAT_QUERY,
   DATE_FORMAT_VIEW,
   SCHEDULE_MATCH_DAY_SEARCH_PARAMS,
 } from "@/app/schedules/consts";
+import { useScheduleAddMutation } from "@/app/schedules/queries";
+import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -36,10 +32,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TypographyTitle2 } from "@/components/ui/typography";
+import {
+  TypographyDescription1,
+  TypographyTitle2,
+} from "@/components/ui/typography";
 import useModalHook from "@/hook/useModalHook";
 import { cn } from "@/lib/utils";
-import { useScheduleCreateMutation } from "@/service/ScheduleService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format, toDate } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -75,13 +73,13 @@ const formSchema = z.object({
 
 export default function ScheduleAddForm() {
   const FORM_ID = useId();
-
   const router = useRouter();
   const cancelConfirmModal = useModalHook();
+  const submitConfirmModal = useModalHook();
   const searchParams = useSearchParams();
   const matchDefaultDate = searchParams.get(SCHEDULE_MATCH_DAY_SEARCH_PARAMS);
 
-  const scheduleCreateMutation = useScheduleCreateMutation();
+  const scheduleAddMutation = useScheduleAddMutation();
 
   const defaultDate = matchDefaultDate ? toDate(matchDefaultDate) : new Date();
 
@@ -107,12 +105,32 @@ export default function ScheduleAddForm() {
     (_, i) => (i + 1) * 2
   );
 
-  // 2. Define a submit handler.
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // console.log(values);
-    // scheduleCreateMutation.mutate(values);
+  const handleRouterBack = () => {
+    router.back();
+  };
+
+  const onSubmit = () => {
+    submitConfirmModal.onShow();
+  };
+
+  const submitMutate = () => {
+    const submitForm = form.getValues();
+    // TODO 헬퍼함수 (컨버터함수)
+
+    scheduleAddMutation.mutate(
+      {
+        title: submitForm.title,
+        startTime: submitForm.startTime,
+        endTime: submitForm.startTime, // TODO endTime 계산
+        participantCount: Number(submitForm.participantCount),
+        location: submitForm.location,
+        matchDay: format(submitForm.matchDay, DATE_FORMAT_QUERY),
+      },
+      {
+        onSuccess: () => {}, // 닫기, 홈으로 이동, 쿼리무효화
+        onError: () => {}, // 에러 토스트
+      }
+    );
   };
 
   const { isDirty, isValid } = form.formState;
@@ -120,6 +138,7 @@ export default function ScheduleAddForm() {
   return (
     <>
       <div className="flex flex-1 flex-col gap-8">
+        {/* TODO form 컴포넌트 분리 */}
         {/* form */}
         <Form {...form}>
           <form
@@ -291,6 +310,8 @@ export default function ScheduleAddForm() {
                 </FormItem>
               )}
             />
+
+            {/* TODO 사진 추가 */}
           </form>
         </Form>
 
@@ -323,36 +344,49 @@ export default function ScheduleAddForm() {
         </div>
       </div>
 
-      <Dialog open={cancelConfirmModal.isOpen}>
-        {/* 260px */}
-        <DialogContent className="w-[17rem]">
-          <DialogHeader>
-            <DialogTitle>일정 추가를 취소하시겠어요?</DialogTitle>
-            <DialogDescription className="whitespace-pre-wrap text-center">
-              {`페이지 이탈시\n 입력한 정보는 저장되지 않습니다.`}
-            </DialogDescription>
-          </DialogHeader>
+      <Modal
+        headerText="일정 추가를 취소하시겠어요?"
+        headerAlign="center"
+        isOpen={cancelConfirmModal.isOpen}
+        subText={`페이지 이탈시\n 입력한 정보는 저장되지 않습니다.`}
+        leftButtonLabel="닫기"
+        leftHandleClick={cancelConfirmModal.onHide}
+        rightButtonLabel="나가기"
+        rightHandleClick={handleRouterBack}
+      />
 
-          <div className="flex gap-4">
-            <Button
-              variant={"ghost"}
-              size="lg"
-              className="flex-1"
-              onClick={cancelConfirmModal.onHide}
-            >
-              닫기
-            </Button>
-            <Button
-              variant={"ghost"}
-              size="lg"
-              className="flex-1 text-primary hover:bg-primary hover:text-primary-foreground "
-              onClick={router.back}
-            >
-              나가기
-            </Button>
+      {/* TODO 리팩토링, map */}
+      <Modal
+        headerText="일정 최종 확인"
+        isOpen={submitConfirmModal.isOpen}
+        leftButtonLabel="취소"
+        leftHandleClick={submitConfirmModal.onHide}
+        rightButtonLabel="생성"
+        rightHandleClick={submitMutate}
+      >
+        <div>
+          <div className="flex gap-3">
+            <TypographyTitle2>날짜</TypographyTitle2>
+            {/* TODO 오전 오후로 변경, 시간 더하기 */}
+            <TypographyDescription1>{`${format(form.watch("matchDay"), DATE_FORMAT_VIEW)}\n${form.watch("startTime")} ~ 더한시간`}</TypographyDescription1>
           </div>
-        </DialogContent>
-      </Dialog>
+
+          <div className="flex items-center gap-3">
+            <TypographyTitle2>제목</TypographyTitle2>
+            <TypographyDescription1>{`${form.watch("title")}`}</TypographyDescription1>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <TypographyTitle2>장소</TypographyTitle2>
+            <TypographyDescription1>{`${form.watch("location")}`}</TypographyDescription1>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <TypographyTitle2>인원</TypographyTitle2>
+            <TypographyDescription1>{`${form.watch("participantCount")}명`}</TypographyDescription1>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

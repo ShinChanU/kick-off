@@ -9,6 +9,3 @@ export default function Page() {
     </div>
   );
 }
-
-// https://ui.shadcn.com/docs/components/date-picker
-// https://ui.shadcn.com/docs/components/form

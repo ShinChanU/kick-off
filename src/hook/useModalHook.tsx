@@ -23,6 +23,6 @@ const useModalHook = (initialIsOpen = false) => {
   };
 };
 
-export type TPopupReturn = ReturnType<typeof useModalHook>;
+export type TModalReturnType = ReturnType<typeof useModalHook>;
 
 export default useModalHook;

@@ -1,5 +1,5 @@
+import Header from "@/app/Header";
 import { ThemeProvider } from "@/app/ThemeProvider";
-import Header from "@/components/Header";
 import ReactQueryProviders from "@/hook/useReactQuery";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";

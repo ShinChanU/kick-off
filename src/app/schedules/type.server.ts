@@ -17,3 +17,5 @@ export type TSchedulesPostReq = Pick<
   | "startTime"
   | "title"
 >;
+
+export type TScheduleQueryString = { startDate: string; endDate: string };
