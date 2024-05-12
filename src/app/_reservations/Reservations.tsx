@@ -86,8 +86,8 @@ const Item = (props: TReservationRow) => {
   };
 
   return (
-    <div className={"flex gap-3"}>
-      <div className={"relative min-w-48"}>
+    <div className={"flex items-center gap-3 break-keep"}>
+      <div className={"relative min-h-24 min-w-32"}>
         <Image
           loader={myLoader}
           alt={props.PLACENM}
@@ -100,13 +100,12 @@ const Item = (props: TReservationRow) => {
       <div className={"flex flex-col justify-between gap-3"}>
         <div className={"space-y-1"}>
           <TypographyTitle2>{props.PLACENM}</TypographyTitle2>
-          <TypographyDescription2>{props.SVCNM}</TypographyDescription2>
+          <TypographyDescription2>
+            {props.SVCNM} {`[${props.V_MIN} ~ ${props.V_MAX}]`}
+          </TypographyDescription2>
         </div>
 
-        <div className={"flex flex-wrap gap-2"}>
-          <Badge
-            variant={"secondary"}
-          >{`${props.V_MIN} ~ ${props.V_MAX}`}</Badge>
+        <div className={"flex flex-wrap gap-2 text-caption"}>
           <Badge variant={"secondary"}>{props.AREANM}</Badge>
           <Badge variant={"secondary"}>{props.SVCSTATNM}</Badge>
           <Badge variant={"secondary"}>{props.PAYATNM}</Badge>
