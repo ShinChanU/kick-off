@@ -1,5 +1,6 @@
 import Header from "@/app/Header";
 import { ThemeProvider } from "@/app/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProviders from "@/hook/useReactQuery";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang={"ko"}>
       <body
         className={cn(
           "flex min-h-screen flex-col bg-background font-sans antialiased",
@@ -39,17 +40,22 @@ export default function RootLayout({
       >
         <ReactQueryProviders>
           <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
+            attribute={"class"}
+            defaultTheme={"system"}
             enableSystem
             disableTransitionOnChange
           >
             <Header />
-            <main className="m-auto flex w-full max-w-screen-sm flex-1 flex-col p-4">
+            <main
+              className={
+                "m-auto flex w-full max-w-screen-sm flex-1 flex-col p-4"
+              }
+            >
               {children}
             </main>
           </ThemeProvider>
         </ReactQueryProviders>
+        <Toaster />
       </body>
     </html>
   );

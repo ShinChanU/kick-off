@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 function TypographyTitle1({ children }: { children: ReactNode }) {
   return (
-    <h1 className="scroll-m-20 whitespace-pre-wrap text-title-lg">
+    <h1 className={"scroll-m-20 whitespace-pre-wrap text-title-lg"}>
       {children}
     </h1>
   );
@@ -10,7 +10,7 @@ function TypographyTitle1({ children }: { children: ReactNode }) {
 
 function TypographyTitle2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="scroll-m-20 whitespace-pre-wrap text-title-sm">
+    <h2 className={"scroll-m-20 whitespace-pre-wrap text-title-sm"}>
       {children}
     </h2>
   );
@@ -18,7 +18,7 @@ function TypographyTitle2({ children }: { children: ReactNode }) {
 
 function TypographyDescription1({ children }: { children: ReactNode }) {
   return (
-    <div className="scroll-m-20 whitespace-pre-wrap text-desc-lg">
+    <div className={"scroll-m-20 whitespace-pre-wrap text-desc-lg"}>
       {children}
     </div>
   );
@@ -26,7 +26,7 @@ function TypographyDescription1({ children }: { children: ReactNode }) {
 
 function TypographyDescription2({ children }: { children: ReactNode }) {
   return (
-    <div className="scroll-m-20 whitespace-pre-wrap text-desc-sm">
+    <div className={"scroll-m-20 whitespace-pre-wrap text-desc-sm"}>
       {children}
     </div>
   );
@@ -34,7 +34,7 @@ function TypographyDescription2({ children }: { children: ReactNode }) {
 
 function TypographyCaption({ children }: { children: ReactNode }) {
   return (
-    <div className="scroll-m-20 whitespace-pre-wrap text-caption">
+    <div className={"scroll-m-20 whitespace-pre-wrap text-caption"}>
       {children}
     </div>
   );
@@ -42,7 +42,7 @@ function TypographyCaption({ children }: { children: ReactNode }) {
 
 function TypographyOverline({ children }: { children: ReactNode }) {
   return (
-    <div className="scroll-m-20 whitespace-pre-wrap text-overline">
+    <div className={"scroll-m-20 whitespace-pre-wrap text-overline"}>
       {children}
     </div>
   );

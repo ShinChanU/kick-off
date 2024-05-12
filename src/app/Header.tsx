@@ -28,23 +28,27 @@ export default function Header() {
 
   return (
     isMount && (
-      <header className="sticky top-0 z-10 m-auto flex w-full max-w-screen-sm items-center justify-center border-b bg-inherit p-4">
-        <div className="absolute">
+      <header
+        className={
+          "sticky top-0 z-10 m-auto flex w-full max-w-screen-sm items-center justify-center border-b bg-inherit p-4"
+        }
+      >
+        <div className={"absolute"}>
           {false && (
-            <Button variant="link" onClick={handleGoBack}>
-              <ChevronLeft className="h-6 w-6" />
+            <Button variant={"link"} onClick={handleGoBack}>
+              <ChevronLeft className={"h-6 w-6"} />
             </Button>
           )}
         </div>
 
         <Link
           href={"/"}
-          className="text-center font-giants text-header font-bold"
+          className={"text-center font-giants text-header font-bold"}
         >
-          Kick-off
+          {"Kick-off"}
         </Link>
 
-        <div className="absolute right-0 pr-4">
+        <div className={"absolute right-0 pr-4"}>
           <ModeToggle />
         </div>
       </header>

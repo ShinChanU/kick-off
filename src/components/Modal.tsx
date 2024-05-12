@@ -34,7 +34,7 @@ export default function Modal({
   return (
     <Dialog open={isOpen}>
       {/* 260px */}
-      <DialogContent className="w-[17rem]">
+      <DialogContent className={"w-[17rem]"}>
         <DialogHeader>
           <DialogTitle
             className={headerAlign === "center" ? "text-center" : "text-start"}
@@ -42,7 +42,7 @@ export default function Modal({
             {headerText}
           </DialogTitle>
           {subText && (
-            <DialogDescription className="whitespace-pre-wrap text-center">
+            <DialogDescription className={"whitespace-pre-wrap text-center"}>
               {subText}
             </DialogDescription>
           )}
@@ -50,12 +50,12 @@ export default function Modal({
 
         {children}
 
-        <div className="flex gap-4">
+        <div className={"flex gap-4"}>
           {leftButtonLabel && leftHandleClick && (
             <Button
               variant={"ghost"}
-              size="lg"
-              className="flex-1"
+              size={"lg"}
+              className={"flex-1"}
               onClick={leftHandleClick}
             >
               {leftButtonLabel}
@@ -65,8 +65,10 @@ export default function Modal({
           {rightButtonLabel && rightHandleClick && (
             <Button
               variant={"ghost"}
-              size="lg"
-              className="flex-1 text-primary hover:bg-primary hover:text-primary-foreground "
+              size={"lg"}
+              className={
+                "flex-1 text-primary hover:bg-primary hover:text-primary-foreground "
+              }
               onClick={rightHandleClick}
             >
               {rightButtonLabel}

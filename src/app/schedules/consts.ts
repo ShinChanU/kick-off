@@ -1,9 +1,11 @@
 const DATE_FORMAT_QUERY = "yyyy-MM-dd";
 const DATE_FORMAT_VIEW = "yyyy.MM.dd";
+const DATE_FORMAT_TIME = "HH:mm";
 const SCHEDULE_MATCH_DAY_SEARCH_PARAMS = "defaultMatchDay";
 
 export {
   DATE_FORMAT_QUERY,
+  DATE_FORMAT_TIME,
   DATE_FORMAT_VIEW,
   SCHEDULE_MATCH_DAY_SEARCH_PARAMS,
 };

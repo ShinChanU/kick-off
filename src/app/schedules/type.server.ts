@@ -1,3 +1,4 @@
+// response
 export type TSchedulesRes = {
   scheduleId: number;
   title: string;
@@ -8,6 +9,7 @@ export type TSchedulesRes = {
   endTime: string; // HH:mm
 };
 
+// request
 export type TSchedulesPostReq = Pick<
   TSchedulesRes,
   | "endTime"
@@ -18,4 +20,5 @@ export type TSchedulesPostReq = Pick<
   | "title"
 >;
 
+// query parameters
 export type TScheduleQueryString = { startDate: string; endDate: string };

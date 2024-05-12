@@ -16,7 +16,7 @@ export default function ReactQueryProviders({
             // above 0 to avoid refetching immediately on the client
             staleTime: 60 * 1000,
             refetchOnWindowFocus: false,
-            refetchOnMount: false,
+            refetchOnMount: true,
             retry: 1,
           },
         },
