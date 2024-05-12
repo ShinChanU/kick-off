@@ -30,7 +30,7 @@ export default function Header() {
     isMount && (
       <header
         className={
-          "sticky top-0 z-10 m-auto flex w-full max-w-screen-sm items-center justify-center border-b bg-inherit p-4"
+          "sticky top-0 z-10 m-auto flex w-full max-w-screen-sm items-center justify-center border-x bg-inherit p-4"
         }
       >
         <div className={"absolute"}>

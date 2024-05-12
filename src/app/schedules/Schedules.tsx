@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/typography";
 import { toast } from "@/components/ui/use-toast";
 import { format } from "date-fns";
+import { Fragment } from "react";
 
 type TProps = {
   selectedDate: Date;
@@ -47,10 +48,10 @@ export default function Schedules(props: TProps) {
   return (
     <div className={"mt-4 flex max-h-64 flex-col gap-3 overflow-auto"}>
       {scheduleQuery.data.map((item, i) => (
-        <>
-          <ScheduleItem key={item.scheduleId} {...item} />
+        <Fragment key={item.scheduleId}>
+          <ScheduleItem {...item} />
           {scheduleQuery.data.length - 1 !== i && <Separator />}
-        </>
+        </Fragment>
       ))}
     </div>
   );
